@@ -9,7 +9,7 @@ function App() {
     <>
       <Header />
 
-      <div className="flex h-screen">
+      <div className="flex  h-screen mt-2 gap-2">
         <Sidebar />
         <CanvasPage />
         <RightSidebar />
