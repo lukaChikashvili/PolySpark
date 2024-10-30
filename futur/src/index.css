@@ -56,3 +56,12 @@ body {
   box-shadow: 0 0 15px #00e6e6, 0 0 30px #00e6e6;
 }
 
+.icon-hover {
+  transition: transform 0.3s, box-shadow 0.3s, filter 0.3s;
+}
+
+.icon-hover:hover {
+  transform: scale(1.1);
+  box-shadow: 0 0 5px #00e6e6, 0 0 10px #00e6e6, 0 0 15px #00e6e6;
+  filter: brightness(1.3);
+}
