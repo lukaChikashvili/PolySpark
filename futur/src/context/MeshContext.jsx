@@ -1,5 +1,5 @@
 import { createContext, useState } from "react";
-import floor from '../assets/floor1.jpg'
+import floor from '../assets/floorTextures/floor1.jpg'
 
 
 
