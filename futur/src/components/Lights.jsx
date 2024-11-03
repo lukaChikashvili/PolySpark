@@ -15,16 +15,8 @@ const Lights = () => {
     shadow-camera-bottom={ - 10 }
     shadow-camera-left={ - 10 }
 />
-<ambientLight intensity={100} />
-<spotLight  position={[0, 2, 5]}
-             angle={0.2} 
-             penumbra={0.5} 
-             intensity={1}
-             distance={0} 
-             decay={2}  
-             color={'red'}     
-             castShadow={true} 
- />
+
+<ambientLight intensity={3} />
 
 <pointLight
         position={[0, 2, 5]}

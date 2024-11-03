@@ -1,7 +1,9 @@
-import React from 'react'
+import React, { useContext } from 'react'
 import portal from '../assets/portal.jpg'
+import { MeshContext } from '../context/MeshContext'
 
 const Sidebar = () => {
+  const { modal, selectedTexture } = useContext(MeshContext);
   return (
     <div className='w-1/4 border-[0.5px] border-gray-500 h-screen rounded-md flex flex-col gap-6 items-center px-4 '>
         <div className='w-full  mt-[1rem]'>
@@ -9,7 +11,7 @@ const Sidebar = () => {
         </div>
 
         <div>
-          <img src = {portal} className='rounded-md shadow-lg bg-black' />
+          <img src = {modal ? selectedTexture : portal} className='rounded-md shadow-lg bg-black' />
         </div>
 
         <div>
