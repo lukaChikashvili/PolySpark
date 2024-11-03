@@ -23,32 +23,58 @@ const Experience = () => {
   // import sofa model
   const sofa = useGLTF('./sofa.glb');
 
+
   const pictureRef = useRef(null);
   const controlsRef = useRef(null);
 
+  
+  const prevPosition = useRef(picturePosition.clone());
+  const prevScale = useRef(pictureScale.clone());
+
+  useEffect(() => {
+    const savedPosition = localStorage.getItem('picturePosition');
+    const savedScale = localStorage.getItem('pictureScale');
+
+    if (savedPosition) {
+      const parsedPosition = new THREE.Vector3(...JSON.parse(savedPosition));
+      setPicturePosition(parsedPosition);
+      prevPosition.current = parsedPosition.clone(); 
+    }
+    if (savedScale) {
+      const parsedScale = new THREE.Vector3(...JSON.parse(savedScale));
+      setPictureScale(parsedScale);
+      prevScale.current = parsedScale.clone(); 
+    }
+  }, []);
 
   const handlePicture = () => {
-    setSelectPicture(true)
-  }
-
-
+    setSelectPicture(true);
+  };
 
   const chooseMode = (mode) => {
     setMode(mode);
-  }
-
+  };
 
   const updateStates = () => {
     if (pictureRef.current) {
-      setPicturePosition(pictureRef.current.position.clone());
-      setPictureScale(pictureRef.current.scale.clone());
+      const newPosition = pictureRef.current.position.clone();
+      const newScale = pictureRef.current.scale.clone();
+
+      
+      if (!prevPosition.current.equals(newPosition)) {
+        setPicturePosition(newPosition);
+        prevPosition.current = newPosition.clone(); 
+      }
+      if (!prevScale.current.equals(newScale)) {
+        setPictureScale(newScale);
+        prevScale.current = newScale.clone(); 
+      }
+
+     
+      localStorage.setItem('picturePosition', JSON.stringify([newPosition.x, newPosition.y, newPosition.z]));
+      localStorage.setItem('pictureScale', JSON.stringify([newScale.x, newScale.y, newScale.z]));
     }
-
-    setPicturePosition(picturePosition)
-   
-    
   };
-
 
   return (
     <>
@@ -82,7 +108,7 @@ const Experience = () => {
       {/* picture */}
     
     { mode ? (
-      <TransformControls mode={mode} ref={controlsRef} onMouseUp={updateStates} >
+      <TransformControls mode={mode} ref={controlsRef} onChange={updateStates} >
          <mesh ref={pictureRef}
             position={picturePosition}
             rotation={[0, Math.PI / 2, 0]}
