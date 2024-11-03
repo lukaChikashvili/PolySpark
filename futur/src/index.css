@@ -17,7 +17,7 @@ body {
   );
   margin: 6px;
   font-family: 'Koshgarian', sans-serif;
-
+user-select: none;
  
  
 
@@ -93,3 +93,30 @@ body {
   outline: none; 
 }
 
+
+.img {
+  clip-path: polygon(
+    50px 0, 
+    100% 0, 
+    100% calc(100% - 50px), 
+    calc(100% - 50px) 100%,
+    0 100%,
+    0 50px 
+  );
+  position: relative;
+  display: inline-block;
+  overflow: hidden;
+  transition: clip-path 1s ease-in-out, transform 1s ease, opacity 0.5s ease;
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 4px 10px rgba(0, 255, 255, 0.4);
+ border: 1px solid transparent;
+}
+
+
+
+.img:hover {
+  color: #ffffff;
+  transform: scale(1.05);
+  box-shadow: 0 4px 15px rgba(0, 230, 230, 0.4);
+}

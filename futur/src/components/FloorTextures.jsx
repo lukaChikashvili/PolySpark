@@ -5,7 +5,6 @@ import floor3 from '../assets/floorTextures/floor3.png'
 import floor4 from '../assets/floorTextures/floor4.png'
 import floor5 from '../assets/floorTextures/floor5.png'
 import floor6 from '../assets/floorTextures/floor6.png'
-import { useTexture } from '@react-three/drei'
 import { MeshContext } from '../context/MeshContext'
 
 const FloorTextures = () => {
@@ -54,12 +53,14 @@ const FloorTextures = () => {
 
         
 
-    ]
+    ];
+
+
   return (
     <div className=' gap-8  grid grid-cols-3 p-4 place-items-center mt-[3rem] '>
         {images.map((value) => (
-            <div className=''>
-              <img src = {value.img} onClick={value.onClick} className='cursor-pointer w-[16rem]' />
+            <div className='' key={value.id}>
+              <img src = {value.img} onClick={value.onClick} className='cursor-pointer w-[16rem] img' />
             </div>
         ))}
     </div>
