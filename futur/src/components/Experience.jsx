@@ -1,4 +1,4 @@
-import React, { useContext, useRef, useState } from 'react'
+import React, { useContext, useEffect, useRef, useState } from 'react'
 import { Html, OrbitControls, TransformControls, useGLTF, useTexture } from '@react-three/drei'
 import { MeshContext } from '../context/MeshContext'
 import * as THREE from 'three'
@@ -18,6 +18,7 @@ const Experience = () => {
   
 
   const [mode, setMode] = useState('');
+
 
   // import sofa model
   const sofa = useGLTF('./sofa.glb');
@@ -43,8 +44,11 @@ const Experience = () => {
       setPictureScale(pictureRef.current.scale.clone());
     }
 
+    setPicturePosition(picturePosition)
+   
     
   };
+
 
   return (
     <>
@@ -77,8 +81,8 @@ const Experience = () => {
 
       {/* picture */}
     
-    {selectPicture && mode ? (
-      <TransformControls mode={mode} ref={controlsRef} onMouseUp={updateStates}>
+    { mode ? (
+      <TransformControls mode={mode} ref={controlsRef} onMouseUp={updateStates} >
          <mesh ref={pictureRef}
             position={picturePosition}
             rotation={[0, Math.PI / 2, 0]}
@@ -108,7 +112,8 @@ const Experience = () => {
              <p className='flex items-center underline-offset-8 gap-4 text-xl text-white cursor-pointer duration-500 ease hover:underline hover:-translate-y-2' onClick={() => chooseMode("rotate")}><RefreshCw /> Rotation</p>
              <p className='flex items-center underline-offset-8 gap-4 text-xl text-white cursor-pointer duration-500 ease hover:underline hover:-translate-y-2' onClick={() => chooseMode("scale")}><Scale3D /> Scale</p>
 
-             <span className='text-white cursor-pointer' >X</span>
+<span className='cursor-pointer' onClick={() => setSelectPicture(false)}>X</span>
+             
          </div>
       </Html>}
      
