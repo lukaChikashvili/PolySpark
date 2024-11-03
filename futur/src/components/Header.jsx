@@ -11,7 +11,7 @@ const Header = () => {
       <div className="w-full flex-1 flex items-center justify-center gap-4 buttons">
         <button className="bg-white w-full rounded-md py-1 shadow-lg shadow-black cutout-button   ">
             
-      Figures
+      Furniture
            
         </button>
 
